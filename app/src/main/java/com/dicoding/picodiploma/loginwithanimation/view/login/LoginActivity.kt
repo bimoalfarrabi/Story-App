@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                     is Result.Success -> {
                         val data = result.result.loginResult
                         data?.let {
-                            viewModel.saveSession(UserModel(email, "sample_token"))
+                            viewModel.saveSession(UserModel(it.name.toString(), it.userId.toString(), it.token.toString()))
                             binding.progressBar.visibility = View.GONE
                             Intent(this, MainActivity::class.java).apply {
                                 startActivity(this)
@@ -79,18 +79,6 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Login gagal", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
-                setPositiveButton("Lanjut") { _, _ ->
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish()
-                }
-                create()
-                show()
             }
         }
     }
