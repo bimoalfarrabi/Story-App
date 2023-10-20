@@ -16,7 +16,6 @@ class EmailEditText : AppCompatEditText {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context, attrs, defStyleAttr
     ) {
-        // Set inputType
         inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
     }
 
