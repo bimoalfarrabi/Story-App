@@ -15,6 +15,7 @@ import com.dicoding.picodiploma.loginwithanimation.data.Result
 import com.dicoding.picodiploma.loginwithanimation.data.pref.UserModel
 import com.dicoding.picodiploma.loginwithanimation.databinding.ActivityLoginBinding
 import com.dicoding.picodiploma.loginwithanimation.view.ViewModelFactory
+import com.dicoding.picodiploma.loginwithanimation.view.home.HomeActivity
 import com.dicoding.picodiploma.loginwithanimation.view.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -68,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                         data?.let {
                             viewModel.saveSession(UserModel(it.name.toString(), it.userId.toString(), it.token.toString()))
                             binding.progressBar.visibility = View.GONE
-                            Intent(this, MainActivity::class.java).apply {
+                            Intent(this, HomeActivity::class.java).apply {
                                 startActivity(this)
                                 finish()
                             }

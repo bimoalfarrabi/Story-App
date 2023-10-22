@@ -38,11 +38,15 @@ class UserRepository private constructor(
 
     fun loginUser(email: String, password: String) : LiveData<Result<LoginResponse>> = liveData {
         emit(Result.Loading)
-        val result = apiService.login(email, password)
-        if (result.error == false) {
-            emit(Result.Success(result))
-        } else {
-            emit(Result.Error(result.message.toString()))
+        try {
+            val result = apiService.login(email, password)
+            if (result.error == false) {
+                emit(Result.Success(result))
+            } else {
+                emit(Result.Error(result.message.toString()))
+            }
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
         }
     }
 
