@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.loginwithanimation.view.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.picodiploma.loginwithanimation.databinding.ListStoryBinding
 import com.dicoding.picodiploma.loginwithanimation.remote.response.HomeResponse
 import com.dicoding.picodiploma.loginwithanimation.remote.response.ListStoryItem
+import com.dicoding.picodiploma.loginwithanimation.view.detail.DetailActivity
 
 class HomeAdapter :
     ListAdapter<ListStoryItem, HomeAdapter.MyViewHolder>(DIFF_CALLBACK) {
@@ -18,10 +20,6 @@ class HomeAdapter :
     }
 
     private var onItemClickListener: OnItemClickListener? = null
-
-    fun SetOnItemClickListener(listener: OnItemClickListener) {
-        this.onItemClickListener = listener
-    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -36,21 +34,17 @@ class HomeAdapter :
 
     inner class MyViewHolder(val binding: ListStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        init {
-            binding.root.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val story = getItem(position)
-                    onItemClickListener?.onItemClick(story)
-                }
-            }
-        }
 
         fun bind(story: ListStoryItem) {
             binding.storyName.text = story.name
             binding.storyDescription.text = story.description
             binding.storyImage.setImageResource(0)
             Glide.with(binding.storyImage).load(story.photoUrl).into(binding.storyImage)
+            itemView.setOnClickListener {
+                val position = Intent(itemView.context, DetailActivity::class.java)
+                position.putExtra(DetailActivity.DETAIL_STORY, story)
+                itemView.context.startActivity(position)
+            }
         }
     }
 

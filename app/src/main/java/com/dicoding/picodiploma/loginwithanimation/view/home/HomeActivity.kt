@@ -28,6 +28,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding : ActivityHomeBinding
     private lateinit var adapter : HomeAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
