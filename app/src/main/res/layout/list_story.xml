@@ -15,7 +15,8 @@
             android:id="@+id/story_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/baseline_image_24"/>
 
         <TextView
             android:id="@+id/story_name"
