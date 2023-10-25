@@ -121,11 +121,10 @@ class MainStoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(description: String = "") {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this).reduceFileImage()
             Log.d("Image File", "showImage: ${imageFile.path}")
-            val description = "Ini adalah deksripsi gambar"
             if (description.isEmpty()) {
                 showToast("Deskripsi gambar harus diisi")
                 return

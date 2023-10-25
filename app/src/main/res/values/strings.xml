@@ -17,5 +17,6 @@
     <string name="story_name">Nama</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
     <string name="home_button">Masuk</string>
+    <string name="hint_description">Deskripsi</string>
 
 </resources>
