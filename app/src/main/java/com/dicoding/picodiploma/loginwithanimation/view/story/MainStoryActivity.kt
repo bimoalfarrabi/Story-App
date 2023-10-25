@@ -121,7 +121,8 @@ class MainStoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImage(description: String = "") {
+    private fun uploadImage() {
+        val description = binding.editText.text.toString()
         if (description.isBlank()) {
                 showToast("Deskripsi gambar harus diisi")
                 return
