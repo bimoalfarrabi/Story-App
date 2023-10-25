@@ -10,6 +10,7 @@ import com.dicoding.picodiploma.loginwithanimation.view.home.HomeViewModel
 import com.dicoding.picodiploma.loginwithanimation.view.login.LoginViewModel
 import com.dicoding.picodiploma.loginwithanimation.view.main.MainViewModel
 import com.dicoding.picodiploma.loginwithanimation.view.signup.SignUpViewModel
+import com.dicoding.picodiploma.loginwithanimation.view.story.MainStoryViewModel
 
 class ViewModelFactory(private val userRepository: UserRepository, private val storyRepository: StoryRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -28,6 +29,9 @@ class ViewModelFactory(private val userRepository: UserRepository, private val s
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(storyRepository) as T
             }
+            modelClass.isAssignableFrom(MainStoryViewModel::class.java) -> {
+                MainStoryViewModel(storyRepository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
@@ -43,6 +47,10 @@ class ViewModelFactory(private val userRepository: UserRepository, private val s
                 }
             }
             return INSTANCE as ViewModelFactory
+        }
+        fun clearInstance() {
+            INSTANCE = null
+            UserRepository.clearInstance()
         }
     }
 }

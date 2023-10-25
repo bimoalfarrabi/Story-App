@@ -15,5 +15,7 @@
     <string name="logout">Keluar</string>
     <string name="story_description">Deskripsi</string>
     <string name="story_name">Nama</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="home_button">Masuk</string>
 
 </resources>

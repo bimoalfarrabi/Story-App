@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+        setupHomeButton()
     }
 
     private fun setupView() {
@@ -50,6 +51,13 @@ class MainActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.logoutButton.setOnClickListener {
             viewModel.logout()
+        }
+    }
+
+    private fun setupHomeButton() {
+        binding.homeButton.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
     }
 

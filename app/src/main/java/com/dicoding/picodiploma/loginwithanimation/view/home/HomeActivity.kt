@@ -40,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
-                startActivity(Intent(this, WelcomeActivity::class.java))
+                startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             }
         }
@@ -83,5 +83,10 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "HomeActivity"
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getStory()
     }
 }

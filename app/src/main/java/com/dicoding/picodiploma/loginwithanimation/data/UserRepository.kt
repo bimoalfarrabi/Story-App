@@ -50,6 +50,7 @@ class UserRepository private constructor(
         }
     }
 
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null
@@ -60,6 +61,10 @@ class UserRepository private constructor(
             instance ?: synchronized(this) {
                 instance ?: UserRepository(apiService, userPreference)
             }.also { instance = it }
+
+        fun clearInstance() {
+            StoryRepository.instance = null
+        }
     }
 
     override val coroutineContext: CoroutineContext get() = Dispatchers.Main
