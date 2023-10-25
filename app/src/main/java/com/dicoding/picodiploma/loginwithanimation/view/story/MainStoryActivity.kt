@@ -122,13 +122,14 @@ class MainStoryActivity : AppCompatActivity() {
     }
 
     private fun uploadImage(description: String = "") {
-        currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this).reduceFileImage()
-            Log.d("Image File", "showImage: ${imageFile.path}")
-            if (description.isEmpty()) {
+        if (description.isBlank()) {
                 showToast("Deskripsi gambar harus diisi")
                 return
             }
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, this).reduceFileImage()
+            Log.d("Image File", "showImage: ${imageFile.path}")
+    
             val intent = Intent(this, HomeActivity::class.java)
 
             viewModel.uploadImage(imageFile, description).observe(this) { result ->
