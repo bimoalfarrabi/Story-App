@@ -19,6 +19,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="?android:attr/textColorPrimary" />
 
+    <ImageView
+        android:id="@+id/ivMaps"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginBottom="707dp"
+        android:src="@drawable/baseline_map_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivLogout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?android:attr/textColorPrimary" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvStory"
         android:layout_width="0dp"

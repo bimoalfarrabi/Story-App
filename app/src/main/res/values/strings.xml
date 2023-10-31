@@ -18,5 +18,6 @@
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
     <string name="home_button">Masuk</string>
     <string name="hint_description">Deskripsi</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
 </resources>

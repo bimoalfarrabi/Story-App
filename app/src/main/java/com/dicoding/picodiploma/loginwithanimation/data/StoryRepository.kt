@@ -1,6 +1,8 @@
 package com.dicoding.picodiploma.loginwithanimation.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.dicoding.picodiploma.loginwithanimation.data.pref.UserModel
 import com.dicoding.picodiploma.loginwithanimation.data.pref.UserPreference
@@ -30,6 +32,17 @@ class StoryRepository private constructor(
                 emit(Result.Error(result.message.toString()))
             }
         } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getStoriesWithLocation(): LiveData<Result<HomeResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getStoriesWithLocation(1)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            Log.d("ListStoryViewModel", "getStoriesWithLocation: ${e.message.toString()} ")
             emit(Result.Error(e.message.toString()))
         }
     }

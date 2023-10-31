@@ -17,6 +17,7 @@ import com.dicoding.picodiploma.loginwithanimation.databinding.ActivityHomeBindi
 import com.dicoding.picodiploma.loginwithanimation.view.ViewModelFactory
 import com.dicoding.picodiploma.loginwithanimation.view.login.LoginViewModel
 import com.dicoding.picodiploma.loginwithanimation.data.Result
+import com.dicoding.picodiploma.loginwithanimation.view.maps.MapsActivity
 import com.dicoding.picodiploma.loginwithanimation.view.story.MainStoryActivity
 import com.dicoding.picodiploma.loginwithanimation.view.welcome.WelcomeActivity
 
@@ -71,6 +72,11 @@ class HomeActivity : AppCompatActivity() {
 
         binding.fabAdd.setOnClickListener {
             val intent = Intent(this, MainStoryActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.ivMaps.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
             startActivity(intent)
         }
     }
