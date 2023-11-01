@@ -3,6 +3,7 @@ package com.dicoding.picodiploma.loginwithanimation.view.home
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import com.dicoding.picodiploma.loginwithanimation.remote.response.ListStoryItem
 import com.dicoding.picodiploma.loginwithanimation.view.detail.DetailActivity
 
 class HomeAdapter :
-    ListAdapter<ListStoryItem, HomeAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<ListStoryItem, HomeAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
         fun onItemClick(item: ListStoryItem)
@@ -29,7 +30,9 @@ class HomeAdapter :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val story = getItem(position)
-        holder.bind(story)
+        if (story != null) {
+            holder.bind(story)
+        }
     }
 
     inner class MyViewHolder(val binding: ListStoryBinding) :

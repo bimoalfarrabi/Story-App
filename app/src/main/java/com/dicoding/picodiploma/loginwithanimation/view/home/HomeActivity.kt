@@ -36,8 +36,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = HomeAdapter()
-        binding.rvStory.adapter = adapter
 
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
@@ -46,23 +44,8 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.getStory().observe(this) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    adapter.submitList(result.result.listStory)
-                }
-                is Result.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Gagal mengambil data", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
         setupAction()
+        getStories()
 
         val layoutManager = LinearLayoutManager(this)
         binding.rvStory.layoutManager = layoutManager
@@ -81,6 +64,18 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private fun getStories() {
+        val adapter = HomeAdapter()
+        binding.rvStory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        viewModel.getStory.observe(this, {
+            adapter.submitData(lifecycle, it)
+        })
+    }
+
     private fun setupAction() {
         binding.ivLogout.setOnClickListener {
             viewModel.logout()
@@ -93,6 +88,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getStory()
+        viewModel.getStory
     }
 }

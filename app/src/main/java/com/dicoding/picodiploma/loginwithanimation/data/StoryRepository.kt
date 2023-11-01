@@ -4,9 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.dicoding.picodiploma.loginwithanimation.data.pref.UserModel
 import com.dicoding.picodiploma.loginwithanimation.data.pref.UserPreference
 import com.dicoding.picodiploma.loginwithanimation.remote.response.HomeResponse
+import com.dicoding.picodiploma.loginwithanimation.remote.response.ListStoryItem
 import com.dicoding.picodiploma.loginwithanimation.remote.response.UploadResponse
 import com.dicoding.picodiploma.loginwithanimation.remote.retrofit.ApiService
 import com.google.gson.Gson
@@ -22,18 +27,15 @@ class StoryRepository private constructor(
     private val apiService: ApiService,
     private val userPreference: UserPreference
 ) {
-    fun getStory() : LiveData<Result<HomeResponse>> = liveData{
-        emit(Result.Loading)
-        try {
-            val result = apiService.getStory()
-            if (result.error == false) {
-                emit(Result.Success(result))
-            } else {
-                emit(Result.Error(result.message.toString()))
+    fun getStory() : LiveData<PagingData<ListStoryItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                QuotePagingSource(apiService)
             }
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
+        ).liveData
     }
 
     fun getStoriesWithLocation(): LiveData<Result<HomeResponse>> = liveData {

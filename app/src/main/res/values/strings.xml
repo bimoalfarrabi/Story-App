@@ -19,5 +19,6 @@
     <string name="home_button">Masuk</string>
     <string name="hint_description">Deskripsi</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry_button">Retry</string>
 
 </resources>
