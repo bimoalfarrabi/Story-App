@@ -71,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                             binding.progressBar.visibility = View.GONE
                             Intent(this, HomeActivity::class.java).apply {
                                 ViewModelFactory.clearInstance()
+                                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(this)
                                 finish()
                             }
