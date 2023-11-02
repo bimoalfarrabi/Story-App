@@ -39,6 +39,9 @@ android {
 
 dependencies {
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
     val cameraxVersion = "1.3.0"
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -67,5 +70,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.activity:activity-ktx:1.8.0")
+
+    testImplementation("androidx.arch.core:core-testing:2.1.0") // InstantTaskExecutorRule
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1") //TestDispatcher
+    testImplementation("org.mockito:mockito-core:3.12.4")
+    testImplementation("org.mockito:mockito-inline:3.12.4")
 
 }
